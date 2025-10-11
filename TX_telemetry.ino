@@ -19,8 +19,8 @@ struct ResponseSignal {
 };
 ResponseSignal responseData;
 
-const byte pipe[][3] = {"ch1"}; 
-RF24 radio(9, 10); 
+const byte pipe[3] = "ch2"; 
+RF24 radio(7, 8); 
 
 void setup()
 {
@@ -69,18 +69,18 @@ void setup()
                                 
                                   // Configure the NRF24 module                         
   radio.begin();
-  radio.setChannel(100);
+  radio.setChannel(99);
   radio.setAutoAck(false);
   radio.setDataRate(RF24_250KBPS); // The lowest data rate value for more stable communication 
   radio.setPALevel(RF24_PA_MAX);   // Output power is set for maximum                          
-  radio.openWritingPipe(pipe[0]);                
+  radio.openWritingPipe(pipe);                
   radio.stopListening();                         
   delay(50);
 }
 
 void loop()
 {
-  responseData.voltage = map(analogRead(A6), 179, 614, 0, 255);// 0 is 0.875, 255 is 3 V, *5.71 to get actual voltage;
+  responseData.voltage = map(analogRead(A7), 179, 614, 0, 255);// 0 is 0.877, 255 is 3 V, *5.7 to get actual voltage;
   
   barometerSignals();
   AltitudeBarometer-=AltitudeBarometerStartUp;
