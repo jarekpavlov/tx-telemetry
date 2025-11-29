@@ -80,8 +80,7 @@ void setup()
 
 void loop()
 {
-  responseData.voltage = map(analogRead(A7), 179, 614, 0, 255);// 0 is 0.877, 255 is 3 V, *5.7 to get actual voltage;
-  
+  responseData.voltage = map(analogRead(A7), 143, 614, 0, 255);// 0 is 0.699, 255 is 3 V, *5.72 to get actual voltage;
   barometerSignals();
   AltitudeBarometer-=AltitudeBarometerStartUp;
   if (AltitudeBarometer > 0) {
